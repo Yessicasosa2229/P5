@@ -8,7 +8,7 @@ int main(void)
    Configurar_PLL(_20MHZ);  //Confiuracion de velocidad de reloj
    // Configurar_PLL(_20MHZ);
     //Configura_Reg_ADC0();
-    //Configurar_UART0();
+    Configurar_UART4();
     Configura_Reg_PWM1(50);//Configuro a 10khz el pwm
     while(1)
     {

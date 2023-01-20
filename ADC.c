@@ -14,17 +14,30 @@ extern void Configura_Reg_ADC0(void)
     dandole la mayor prioridad al secuenciador 2 con evento
     de procesador 
     */
-     //Pag 396 para inicializar el modulo de reloj del adc RCGCADC
-    SYSCTL->RCGCADC = (1<<0); 
-    //Pag 382 (RGCGPIO) Puertos base habilitación del reloj
+    //pag352 Habilitar y proporcionar un reloj al Modulo ADC0
+    SYSCTL->RCGCADC = (1<<0);  //modulo 0
+
+    //Utilizaré pines PB4, PB6 Y E4
+
+    //Pag 406 (RGCGPIO) Habilitar Puertos a utilizar (B Y E)
     //                     F     E      D       C      B     A
-    SYSCTL->RCGCGPIO |= (1<<5)|(1<<4)|(0<<3)|(0<<2)|(0<<1)|(1<<0)|(1<<12)|(1<<8);
-    //Pag 760 (GPIODIR) Habilta los pines como I/O un cero para entrada y un uno para salida
-    GPIOE_AHB->DIR = (0<<5) | (0<<4); //PE5 y PE4
-    //(GPIOAFSEL) pag.770 Enable alternate función para que el modulo analógico tenga control de esos pines
-    GPIOE_AHB->AFSEL =  (1<<4) | (1<<5 );
-    //(GPIODEN) pag.781 desabilita el modo digital
-    GPIOE_AHB->DEN = (0<<4) | (0<<5 );
+    SYSCTL->RCGCGPIO |= (0<<5)|(1<<4)|(0<<3)|(0<<2)|(1<<1)|(0<<0)|(1<<12)|(1<<8);
+    
+    //Pag 663 (GPIODIR) Habilta los pines como I/O un cero para entrada y un uno para salida
+    //PARA ADC TIENEN QUE SER ENTRADAS
+    //EL GPIO -DIR se hace para cada puerto 
+    GPIOB_AHB->DIR = (0<<4) | (0<<6); //PB4 y PB6    
+    GPIOE_AHB->DIR = (0<<4); //PE4
+    
+    //(GPIOAFSEL) pag.672 Enable alternate función para que el modulo analógico tenga control de esos pines
+    //EL GPIO -AFSEL se hace para cada puerto
+    GPIOB_AHB->AFSEL =  (1<<4) | (1<<6 ); //PB4 Y PB6
+    GPIOE_AHB->AFSEL =  (1<<4); //PE4
+
+    //(GPIODEN) pag.682 desabilitaR el modo digital
+    GPIOB_AHB->DEN = (0<<4) | (0<<6); //PB4 Y PB6
+    GPIOE_AHB->DEN = (0<<4); //PE4
+    
     //Pag 787 GPIOPCTL registro combinado con el GPIOAFSEL y la tabla pag 1808
     GPIOE_AHB->PCTL = GPIOE_AHB->PCTL & (0xFF00FFFF);
     //(GPIOAMSEL) pag.786 habilitar analogico
