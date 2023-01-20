@@ -1,4 +1,3 @@
-
 #include "lib/include.h"
 
 
@@ -6,7 +5,7 @@
 extern void Configura_Reg_PWM1(uint16_t freq)
 {
 //------------------------------------EXPERIMENTO 1-----------------------------------------------------------------------------------------
-  /*
+  
 
     SYSCTL->RCGCPWM |= (1<<0); //Enable reloj de modulo 0 PWM1 pag 354
     SYSCTL->RCGCGPIO |= (1<<1); //Enable reloj de GPIO Puerto b pag 340 pin 4
@@ -39,9 +38,9 @@ extern void Configura_Reg_PWM1(uint16_t freq)
   //  PWM0->_0_CTL = (1<<0);// Se activa el generador 2
     PWM0->ENABLE = (1<<2); //habilitar el bloque pa que pase, es el MnPWM2 en el pin2 Pag 1247
 
-*/
+
 //-------------------------------------Experimento 2---------------------------------------------------------------------------
-    SYSCTL->RCGCPWM |= (1<<0); //Enable reloj de modulo 0 PWM1 pag 354
+/*   SYSCTL->RCGCPWM |= (1<<0); //Enable reloj de modulo 0 PWM1 pag 354
     SYSCTL->RCGCGPIO |= (1<<1);//Hab reloj GPIO PUERTO B
     SYSCTL->RCGCGPIO |= (1<<4); //Enable reloj de GPIO Puerto E pag 340 pin 4
 
@@ -102,6 +101,7 @@ extern void Configura_Reg_PWM1(uint16_t freq)
   //  PWM0->_0_CTL = (1<<0);// Se activa el generador 2
     PWM0->ENABLE = (1<<0) | (1<<2); //habilitar el bloque pa que pase, es el MnPWM2 en el pin2 y mnpwm0Pag 124 7
     PWM0->ENABLE = (1<<4); //m0pwm4
+    */ 
 }
 
 
