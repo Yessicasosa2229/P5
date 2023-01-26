@@ -1,7 +1,4 @@
 #include "lib/include.h"
-
-
-
 extern void Configura_Reg_PWM1(uint16_t freq)
 {
 //------------------------------------EXPERIMENTO 1-----------------------------------------------------------------------------------------
@@ -9,8 +6,8 @@ extern void Configura_Reg_PWM1(uint16_t freq)
 
     SYSCTL->RCGCPWM |= (1<<0); //Enable reloj de modulo 0 PWM1 pag 354
     SYSCTL->RCGCGPIO |= (1<<1); //Enable reloj de GPIO Puerto b pag 340 pin 4
-    SYSCTL->RCC |= (1<<20);
-    SYSCTL->RCC &= ~(0x07<<17);
+    SYSCTL->RCC |= (1<<20); //vas a dividir 
+    SYSCTL->RCC &= ~(0x07<<17); 
 
     //SYSCTL->RCC &= (0xFFF0FFFF);
     //AFSEL HABILITA LAS FUNCIONES ALTERNAS 
