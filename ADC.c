@@ -1,4 +1,3 @@
-/
 #include "lib/include.h"
 
 extern void Configura_Reg_ADC0(void)
